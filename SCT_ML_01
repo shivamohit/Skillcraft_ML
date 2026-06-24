@@ -1,0 +1,26 @@
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+# Read Excel file
+data = pd.read_csv(r"C:\Users\MOHIT\Desktop\intenship\House_Price_Dataset.csv")
+
+# Input features
+X = data[["SquareFootage", "Bedrooms", "Bathrooms"]]
+
+# Output (house price)
+y = data["Price"]
+
+# Train model
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict price for a new house
+new_house = pd.DataFrame({
+    "SquareFootage": [2000],
+    "Bedrooms": [3],
+    "Bathrooms": [2]
+})
+
+price = model.predict(new_house)
+
+print("Predicted House Price:", round(price[0], 2))
